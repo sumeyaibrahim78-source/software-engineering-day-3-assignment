@@ -1,0 +1,76 @@
+Practical Development Setup Report 
+NAME:SUMEYA IBRAHIM 
+DATE: September 2026 
+COURSE REFERENCE: Full-Stack Environment Integration Lab 
+Solution Task 1: Flutter & Dart Environment Setup 
+1. Terminal Commands & Verification: 
+Run flutter doctor to confirm toolchain setup: 
+$ flutter doctor 
+Doctor summary: 
+[✓] Flutter (Channel stable, 3.x.x) 
+[✓] Android toolchain - develop for Android devices 
+[✓] VS Code (version 1.x.x) 
+[✓] Connected device (1 available) 
+2. Create & Navigate Project: 
+$ flutter create my_first_app 
+$ cd my_first_app 
+$ flutter devices 
+3. Hot Reload vs. Hot Restart: 
+• Hot Reload (r): Injects updated source code into the running Dart VM and rebuilds the widget tree. Used for UI tweaks and layout adjustments. Preserves application state (takes under 1 second). • Hot Restart (R): Restarts the entire application, resetting the app state completely. Used when modifying main initialization logic, global state, or adding new static assets. 
+Solution Task 2: MySQL Database Management 
+1 & 2. SQL Statements Execution: 
+$ mysql -u root -p 
+mysql> CREATE DATABASE school; 
+mysql> USE school; 
+mysql> CREATE TABLE students ( 
+id INT AUTO_INCREMENT PRIMARY KEY, 
+name VARCHAR(100) NOT NULL, 
+email VARCHAR(150) UNIQUE NOT NULL, 
+enrolled_on DATE 
+); 
+mysql> INSERT INTO students (name, email, enrolled_on) 
+VALUES ('Alice Mwangi', 'alice@example.com', '2025-01-15'), 
+('Brian Ochieng', 'brian@example.com', '2025-01-15'); 
+mysql> SELECT * FROM students;
+id 
+name 
+email 
+enrolled_on
+1 
+Alice Mwangi 
+alice@example.com 
+2026-01-15
+
+
+
+2 
+Brian Ochieng 
+brian@example.com 
+2026-01-17
+
+
+
+3. Security Explanation: 
+Connecting applications with the root account breaks the principle of least privilege. If the web application is compromised via SQL injection or a code leak, the attacker gains full control over all databases on the server. 
+mysql> CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'StrongPassword123!'; mysql> GRANT SELECT, INSERT, UPDATE, DELETE ON school.* TO 'appuser'@'localhost'; mysql> FLUSH PRIVILEGES; 
+Solution Task 3: Python Environment Setup 
+1, 2, & 3. Terminal Execution: 
+# Create folder & enter 
+$ mkdir python_setup_lab && cd python_setup_lab 
+# Create virtual environment 
+$ python3 -m venv venv 
+# Activate virtual environment (macOS/Linux) 
+$ source venv/bin/activate 
+# (For Windows CMD: venv\Scripts\activate | PowerShell: venv\Scripts\Activate.ps1) 
+# Install package & verify 
+(venv) $ pip3 install requests 
+(venv) $ pip3 list 
+# Export to requirements file 
+(venv) $ pip3 freeze > requirements.txt 
+Solution Task 4: VS Code Configuration 
+1. Extension Installation: 
+Open VS Code -> Extensions (Ctrl+Shift+X / Cmd+Shift+X) -> Search & install: Flutter, Dart, Python, Pylance, MySQL. 
+2. Interpreter Selection: 
+Press Ctrl+Shift+P (or Cmd+Shift+P on macOS) -> Search and select Python: Select Interpreter -> Browse to and select python_setup_lab/venv/bin/python (or venv\Scripts\python.exe on Windows). 
+3. Workspace Verification: 
+Verify that the bottom status bar reflects the selected interpreter ('venv': venv) and the integrated terminal (Ctrl+`) shows (venv) prefixing the command line.
